@@ -16,7 +16,7 @@ async function connectDB() {
       database: process.env.DB_NAME,
     });
 
-    console.log('✅ Connected to DB');
+    console.log('✅ Connected to DB with webhook');
   } catch (err) {
     console.error('❌ DB connection failed:', err.message);
   }
