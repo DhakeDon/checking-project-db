@@ -36,7 +36,7 @@ app.get('/roll', async (req, res) => {
 
 // Home
 app.get('/', (req, res) => {
-  res.send('🚀 DB display app running with webook and acaddhfnenfkednkfjeaknfkenfkost');
+  res.send('🚀 DB display app running with webook ');
 });
 
 app.listen(PORT, () => {
