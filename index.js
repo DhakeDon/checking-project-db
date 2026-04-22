@@ -36,7 +36,7 @@ app.get('/roll', async (req, res) => {
 
 // Home
 app.get('/', (req, res) => {
-  res.send('🚀 DB display app running with webhook  wuhhuhauuhau ');
+  res.send('🚀 DB display app running with webhook  hahahah ');
 });
 
 app.listen(PORT, () => {
