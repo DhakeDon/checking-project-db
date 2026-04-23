@@ -4,9 +4,10 @@ const mysql = require('mysql2/promise');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+console.log("MY_NAME:", process.env.MY_NAME); // <-- this works
+
 let db;
 
-// 🔥 Connect to DB
 async function connectDB() {
   try {
     db = await mysql.createConnection({
@@ -17,6 +18,7 @@ async function connectDB() {
     });
 
     console.log('✅ Connected to DB with webhook');
+    console.log("Custom Env:", process.env.MY_NAME); // this also works
   } catch (err) {
     console.error('❌ DB connection failed:', err.message);
   }
@@ -24,19 +26,8 @@ async function connectDB() {
 
 connectDB();
 
-// 📖 ONLY display roll table
-app.get('/roll', async (req, res) => {
-  try {
-    const [rows] = await db.execute('SELECT * FROM roll');
-    res.json(rows);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Home
 app.get('/', (req, res) => {
-  res.send('🚀 DB display app running with webhook  hahahah ');
+  res.send(process.env.MY_NAME);
 });
 
 app.listen(PORT, () => {
