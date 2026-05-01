@@ -3,7 +3,6 @@ const mysql = require('mysql2/promise');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-console.log("MY_NAME:", process.env.MY); // <-- this works
 
 let db;
 
@@ -16,8 +15,7 @@ async function connectDB() {
       database: process.env.DB_NAME,
     });
 
-    console.log('✅ Connected to DB with  webbn');
-    console.log("Custom Env:", process.env.MY); // this also works
+    console.log('✅ Connected to DB');
   } catch (err) {
     console.error('❌ DB connection failed:', err.message);
   }
@@ -25,9 +23,23 @@ async function connectDB() {
 
 connectDB();
 
+
+// ✅ Root route → only "hi world"
 app.get('/', (req, res) => {
-  res.send(process.env.MY);
+  res.send('hi world');
 });
+
+
+// ✅ /roll → show all students data
+app.get('/roll', async (req, res) => {
+  try {
+    const [rows] = await db.execute('SELECT * FROM students');
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
