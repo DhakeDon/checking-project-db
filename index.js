@@ -26,7 +26,7 @@ connectDB();
 
 // ✅ Root route → only "hi world"
 app.get('/', (req, res) => {
-  res.send('hi  weebhook edit  working world');
+  res.send('hi   sir is checking world');
 });
 
 
