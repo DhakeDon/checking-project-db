@@ -26,7 +26,7 @@ connectDB();
 
 // ✅ Root route → only "hi world"
 app.get('/', (req, res) => {
-  res.send('hi  how are you  akshit world');
+  res.send('hi   world');
 });
 
 
